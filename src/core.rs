@@ -189,6 +189,7 @@ pub fn get_event_guild_id(event: &FullEvent) -> Option<GuildId> {
         FullEvent::VoiceServerUpdate { .. } => return None, // We dont handle voice right now
         FullEvent::VoiceStateUpdate { .. } => return None,  // We dont handle voice right now
         FullEvent::WebhookUpdate { guild_id, .. } => *guild_id,
+        FullEvent::Unknown { .. } => return None, // Not yet supported
     };
 
     Some(guild_id)
@@ -355,6 +356,7 @@ pub fn get_event_user_id(event: &FullEvent) -> Option<UserId> {
         FullEvent::VoiceServerUpdate { .. } => return None, // We dont handle voice right now
         FullEvent::VoiceStateUpdate { .. } => return None, // We dont handle voice right now
         FullEvent::WebhookUpdate { .. } => return None, // Doesn't have a known user just from event
+        FullEvent::Unknown { .. } => return None, // Not yet supported
     };
 
     Some(user_id)
